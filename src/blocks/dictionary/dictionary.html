@@ -1,0 +1,106 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="col-md-10">
+            <h4>Dictionary</h4>
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                    Dropdown
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-1">
+            <h4>From</h4>
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                    PL
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-1">
+            <h4>To</h4>
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                    RU
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <table class="table">
+            <tr>
+                <th>Word</th>
+                <th>Transcription</th>
+                <th>Translations</th>
+                <th>Actions</th>
+            </tr>
+            <tr>
+                <td>
+                    <div class="input-group-sm">
+                        <input type="text" class="form-control" ng-model="newWord.word">
+                    </div>
+                </td>
+                <td>
+                    <div class="input-group-sm">
+                        <input type="text" class="form-control" ng-model="newWord.transcription">
+                    </div>
+                </td>
+                <td>
+                    <div class="input-group-sm">
+                        <input type="text" class="form-control" ng-model="newWord.translations">
+                    </div>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-default" ng-click="dictionary.addNewWord">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </td>
+            </tr>
+            <tr ng-repeat="word in dictionary.dictionary track by $index">
+                <td>
+                    <div class="input-group-sm">
+                        <input type="text" class="form-control" ng-model="word.word">
+                    </div>
+                </td>
+                <td>
+                    <div class="input-group-sm">
+                        <input type="text" class="form-control" ng-model="word.transcriptions">
+                    </div>
+                </td>
+                <td>
+                    <div class="input-group-sm">
+                        <input type="text" class="form-control" ng-model="word.translations">
+                    </div>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-default">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

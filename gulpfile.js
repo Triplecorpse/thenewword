@@ -8,7 +8,7 @@ var copy = require('gulp-copy');
 var batch = require('gulp-batch');
 
 var paths = {
-    scripts: ['./bower_components/jquery/dist/jquery.min.js', './bower_components/angular/angular.min.js', './bower_components/bootstrap/dist/js/bootstrap.min.js', './src/blocks/**/*.js', './src/main.js'],
+    scripts: ['./bower_components/jquery/dist/jquery.min.js', './bower_components/angular/angular.min.js', './bower_components/bootstrap/dist/js/bootstrap.min.js', './src/config.js', './src/main.js', './src/blocks/**/*.js', './src/services/**/*.js'],
     styles: ['./bower_components/bootstrap/dist/css/bootstrap.css', './src/blocks/**/*.scss'],
     fonts: ['./bower_components/bootstrap/dist/fonts/**/*.*'],
     htmls: ['./src/index.html', './src/**/*.html'],

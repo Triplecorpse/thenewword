@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="app" ng-controller="appController as app">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{{app.appTitle}}</title>
     <link rel="stylesheet" href="./styles/styles.css">
     <script src="./scripts/script.js"></script>
 </head>
 <body>
-    <header>
+    <header class="page-header">
         <div class="container">
-            <h1>Memorize: The new Word</h1>
+            <h1>Memorize: The New Word</h1>
             <div class="btn-group">
                 <button type="button" class="btn btn-default">Save to disc</button>
                 <button type="button" class="btn btn-default">Load from disc</button>
@@ -19,5 +19,8 @@
             </div>
         </div>
     </header>
+    <div class="container">
+        <tnw-add-new-word></tnw-add-new-word>
+    </div>
 </body>
 </html>

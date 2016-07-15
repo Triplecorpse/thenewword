@@ -1,3 +1,3 @@
-/**
- * Created by eldar on 15.06.2016.
- */
+const Settings = {
+    title: "The New Word"
+};
