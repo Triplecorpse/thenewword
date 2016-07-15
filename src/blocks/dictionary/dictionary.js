@@ -70,7 +70,6 @@
 
             function autofill() {
                 var from = 'pl-ru';
-                var to = 'rus';
                 var phrase = vm.newWord.word;
                 var key = 'dict.1.1.20160715T201519Z.76b9725ec634ce52.e9ab89e72ef7a3ec322fa4016beb2a8f09028af1';
                 var query = 'https://dictionary.yandex.net/api/v1/dicservice.json/lookup?key=' + key + '&lang=' + from + '&text=' + phrase;
@@ -84,10 +83,9 @@
             function fillTranslations(response) {
                 var translations = response.data.def.map((element) => {
                     if(element.tr) {
-                        let translations = (element.tr.map((element) => {
+                        return (element.tr.map((element) => {
                             return element.text;
                         })).join(', ');
-                        return translations;
                     }
                 });
                 translations = translations.filter((elem) => { return elem != undefined });
