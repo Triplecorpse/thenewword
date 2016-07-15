@@ -8,12 +8,12 @@
         return {
             restrict: "E",
             templateUrl: "./blocks/dictionary/dictionary.html",
-            controller: dictionaryController,
+            controller: ['$http', dictionaryController],
             controllerAs: 'dictionary',
             link: link
         };
 
-        function dictionaryController() {
+        function dictionaryController($http) {
             var vm = this;
             var newWord = {};
             var dictionary = JSON.parse(localStorage.dictionary || "[]");
@@ -23,6 +23,7 @@
                 removeWord,
                 saveWords,
                 clearWords,
+                autofill,
                 newWord
             });
 
@@ -65,6 +66,28 @@
                     translations: []
                 };
                 fillWords();
+            }
+
+            function autofill() {
+                var from = 'pol';
+                var to = 'rus';
+                var phrase = vm.newWord.word;
+                var query = 'https://glosbe.com/gapi/translate?from=' + from + '&dest=' + to + '&format=json&phrase=' + phrase;
+                $http({
+                    method: 'get',
+                    url: query
+                })
+                    .then(fillTranslations)
+            }
+
+            function fillTranslations(response) {
+                var translations = response.data.tuc.map((element) => {
+                    if(element.phrase) {
+                        return element.phrase.text;
+                    }
+                });
+                translations = translations.filter((elem) => { return elem != undefined });
+                vm.newWord.translations = translations.join(", ");
             }
         }
 

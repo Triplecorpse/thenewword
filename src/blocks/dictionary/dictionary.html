@@ -51,7 +51,7 @@
             </td>
             <td>
                 <div class="input-group-sm">
-                    <input type="text" class="form-control" required ng-model="dictionary.newWord.word">
+                    <input type="text" class="form-control" required ng-model="dictionary.newWord.word" ng-blur="dictionary.autofill()">
                 </div>
             </td>
             <td>
