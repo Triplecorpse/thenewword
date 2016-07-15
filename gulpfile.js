@@ -9,7 +9,7 @@ var batch = require('gulp-batch');
 
 var paths = {
     scripts: ['./bower_components/jquery/dist/jquery.min.js', './bower_components/angular/angular.min.js', './bower_components/bootstrap/dist/js/bootstrap.min.js', './src/blocks/**/*.js', './src/main.js'],
-    styles: ['./bower_components/bootstrap/dist/css/bootstrap.css', './src/**/*.scss'],
+    styles: ['./bower_components/bootstrap/dist/css/bootstrap.css', './src/blocks/**/*.scss'],
     fonts: ['./bower_components/bootstrap/dist/fonts/**/*.*'],
     htmls: ['./src/index.html', './src/**/*.html'],
     jsxs: ['./src/**/*.jsx']
@@ -32,17 +32,17 @@ gulp.task('styles:concat', () => {
         .pipe(sourcemaps.init())
         .pipe(concat('styles.scss'))
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('src'));
+        .pipe(gulp.dest('./'));
 });
 
 gulp.task('styles:compile', () => {
-    return gulp.src('./src/styles.scss')
+    return gulp.src('./styles.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest('./dist/styles'));
 });
 
 gulp.task('build', () => {
-    runSequence(['scripts:concat', 'styles:concat', 'styles:compile', 'copy']);
+    runSequence(['scripts:concat', 'styles:concat', 'styles:compile', 'copy:fonts', 'copy:html']);
 });
 
 gulp.task('watch', () => {
@@ -59,10 +59,10 @@ gulp.task('copy:html', () => {
         .pipe(gulp.dest('./dist/'));
 });
 
-gulp.task('copy', () => {
-    runSequence(['copy:fonts', 'copy:html']);
-});
+// gulp.task('copy', () => {
+//     runSequence(['copy:fonts', 'copy:html']);
+// });
 
 gulp.task('default', () => {
-    runSequence(['build', 'copy', 'watch'])
+    runSequence(['scripts:concat', 'styles:concat', 'styles:compile', 'copy:fonts', 'copy:html', 'watch'])
 });
