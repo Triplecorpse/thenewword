@@ -69,10 +69,11 @@
             }
 
             function autofill() {
-                var from = 'pol';
+                var from = 'pl-ru';
                 var to = 'rus';
                 var phrase = vm.newWord.word;
-                var query = 'https://glosbe.com/gapi/translate?from=' + from + '&dest=' + to + '&format=json&phrase=' + phrase;
+                var key = 'dict.1.1.20160715T201519Z.76b9725ec634ce52.e9ab89e72ef7a3ec322fa4016beb2a8f09028af1';
+                var query = 'https://dictionary.yandex.net/api/v1/dicservice.json/lookup?key=' + key + '&lang=' + from + '&text=' + phrase;
                 $http({
                     method: 'get',
                     url: query
@@ -81,9 +82,12 @@
             }
 
             function fillTranslations(response) {
-                var translations = response.data.tuc.map((element) => {
-                    if(element.phrase) {
-                        return element.phrase.text;
+                var translations = response.data.def.map((element) => {
+                    if(element.tr) {
+                        let translations = (element.tr.map((element) => {
+                            return element.text;
+                        })).join(', ');
+                        return translations;
                     }
                 });
                 translations = translations.filter((elem) => { return elem != undefined });
