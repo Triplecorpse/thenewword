@@ -1,19 +1,9 @@
 (function() {
     angular
         .module('app')
-        .directive('tnwAddNewWord', ['uiService', 'nameService', addNewWord]);
+        .controller('dictionaryController', ['$http', 'nameService', dictionaryController]);
 
-    function addNewWord (uiService, nameService) {
-
-        return {
-            restrict: "E",
-            templateUrl: "./blocks/dictionary/dictionary.html",
-            controller: ['$http', dictionaryController],
-            controllerAs: 'dictionary',
-            link: link
-        };
-
-        function dictionaryController($http) {
+        function dictionaryController($http, nameService) {
             var vm = this;
             var newWord = {};
             var dictionary = JSON.parse(localStorage[nameService.getKeys()[0]]);
@@ -158,10 +148,4 @@
                 loadDic(dictionaries.length - 1);
             }
         }
-
-        function link() {
-            //TODO: make new page title
-            uiService.pageTitle = 'Add New Words'
-        }
-    }
 })();

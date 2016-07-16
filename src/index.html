@@ -10,18 +10,11 @@
     <header class="page-header">
         <div class="container">
             <h1>Memorize: The New Word</h1>
-            <p>BETA</p>
-            <div class="btn-group">
-                <button type="button" class="btn btn-default" disabled>Import</button>
-                <button type="button" class="btn btn-default" disabled>Export</button>
-            </div>
-            <div class="btn-group">
-                <button type="button" class="btn btn-danger" disabled>Clear local memory</button>
-            </div>
+            <tnw-main-navigation></tnw-main-navigation>
         </div>
     </header>
     <div class="container">
-        <tnw-add-new-word></tnw-add-new-word>
+        <main ui-view></main>
     </div>
 </body>
 </html>

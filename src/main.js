@@ -1,4 +1,28 @@
-angular.module('app', []);
+angular.module('app', ['ui.router']);
+
+(function() {
+    angular.module('app')
+        .config(['$stateProvider', '$urlRouterProvider', config]);
+
+    function config($stateProvider, $urlRouterProvider) {
+
+        $urlRouterProvider.otherwise("/exercises");
+
+        $stateProvider
+            .state('exercises', {
+                url: "/exercises",
+                templateUrl: "./blocks/exercises/exercises.html",
+                controller: 'exercisesController',
+                controllerAs: 'exercises'
+            })
+            .state('editor', {
+                url: "/editor",
+                templateUrl: "./blocks/dictionary/dictionary.html",
+                controller: 'dictionaryController',
+                controllerAs: 'dictionary'
+            });
+    }
+})();
 
 (function() {
     angular

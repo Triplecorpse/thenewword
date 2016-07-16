@@ -8,7 +8,11 @@ var copy = require('gulp-copy');
 var batch = require('gulp-batch');
 
 var paths = {
-    scripts: ['./bower_components/jquery/dist/jquery.min.js', './bower_components/angular/angular.min.js', './bower_components/bootstrap/dist/js/bootstrap.min.js', './src/config.js', './src/main.js', './src/blocks/**/*.js', './src/services/**/*.js'],
+    scripts: ['./bower_components/jquery/dist/jquery.min.js',
+        './bower_components/angular/angular.min.js',
+        './bower_components/angular-ui-router/release/angular-ui-router.min.js',
+        './bower_components/bootstrap/dist/js/bootstrap.min.js',
+        './src/config.js', './src/main.js', './src/blocks/**/*.js', './src/services/**/*.js'],
     styles: ['./bower_components/bootstrap/dist/css/bootstrap.css', './src/blocks/**/*.scss'],
     fonts: ['./bower_components/bootstrap/dist/fonts/**/*.*'],
     htmls: ['./src/index.html', './src/**/*.html'],
@@ -58,10 +62,6 @@ gulp.task('copy:html', () => {
     return gulp.src(paths.htmls)
         .pipe(gulp.dest('./dist/'));
 });
-
-// gulp.task('copy', () => {
-//     runSequence(['copy:fonts', 'copy:html']);
-// });
 
 gulp.task('default', () => {
     runSequence(['scripts:concat', 'styles:concat', 'styles:compile', 'copy:fonts', 'copy:html', 'watch'])
