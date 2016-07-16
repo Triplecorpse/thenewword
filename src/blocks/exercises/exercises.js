@@ -1,3 +1,9 @@
-/**
- * Created by eldar on 17/07/2016.
- */
+(function() {
+    angular
+        .module('app')
+        .controller('exercisesController', [exercisesController]);
+
+    function exercisesController() {
+        var vm = this;
+    }
+})();
