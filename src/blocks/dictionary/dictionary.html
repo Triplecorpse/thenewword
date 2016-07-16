@@ -1,20 +1,22 @@
 <div class="panel panel-default">
     <div class="panel-body">
         <div class="col-md-8">
-            <div class="dropdown">
-                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-                    Default Dictionary
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Default Dictionary</a></li>
-                </ul>
-            </div>
+            <div class="input-group">
+                <input type="text" class="form-control" ng-model="dictionary.dictionary.name">
+                <div class="input-group-btn">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li><a href="#" ng-repeat="dic in dictionary.dictionaries track by $index" ng-click="dictionary.loadDic($index)">{{dic.name}}</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">New Dictionary</a></li>
+                    </ul>
+                </div><!-- /btn-group -->
+            </div><!-- /input-group -->
         </div>
         <div class="col-md-2">
             <div class="btn-group">
-                <button type="button" class="btn btn-success" ng-click="dictionary.saveWords()">Accept</button>
-                <button type="button" class="btn btn-danger" ng-click="dictionary.clearWords()">Reject</button>
+                <button type="button" class="btn btn-success" ng-click="dictionary.saveWords()" title="Accept all changes in word list">Accept</button>
+                <button type="button" class="btn btn-danger" ng-click="dictionary.clearWords()" title="Reject all changes in word list">Reject</button>
             </div>
         </div>
         <div class="col-md-2">
@@ -45,13 +47,13 @@
             <th>Translations</th>
             <th>Actions</th>
         </tr>
-        <tr>
+        <tr ng-keypress="dictionary.checkKey($event)">
             <td>
                 <p>N</p>
             </td>
             <td>
                 <div class="input-group-sm">
-                    <input type="text" class="form-control" required ng-model="dictionary.newWord.word" ng-blur="dictionary.autofill()">
+                    <input type="text" class="form-control" id="word" ng-model="dictionary.newWord.word" ng-blur="dictionary.autofill()">
                 </div>
             </td>
             <td>
@@ -61,7 +63,7 @@
             </td>
             <td>
                 <div class="input-group-sm">
-                    <input type="text" class="form-control" required ng-model="dictionary.newWord.translations">
+                    <input type="text" class="form-control" ng-model="dictionary.newWord.translations" ng-disabled="dictionary.isTranslationsLoading">
                 </div>
             </td>
             <td>
@@ -70,7 +72,7 @@
                 </button>
             </td>
         </tr>
-        <tr ng-repeat="word in dictionary.dictionary track by $index">
+        <tr ng-repeat="word in dictionary.dictionary.words track by $index">
             <td>
                 <p>{{$index + 1}}</p>
             </td>
