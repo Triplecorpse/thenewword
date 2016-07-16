@@ -8,15 +8,15 @@
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li><a href="#" ng-repeat="dic in dictionary.dictionaries track by $index" ng-click="dictionary.loadDic($index)">{{dic.name}}</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#">New Dictionary</a></li>
+                        <li><a href="#" ng-click="dictionary.addDictionary()">New Dictionary</a></li>
                     </ul>
                 </div><!-- /btn-group -->
             </div><!-- /input-group -->
         </div>
         <div class="col-md-2">
             <div class="btn-group">
-                <button type="button" class="btn btn-success" ng-click="dictionary.saveWords()" title="Accept all changes in word list">Accept</button>
-                <button type="button" class="btn btn-danger" ng-click="dictionary.clearWords()" title="Reject all changes in word list">Reject</button>
+                <button type="button" class="btn btn-success" ng-click="dictionary.saveWords()" title="Accept all changes in dictionary name and word list">Accept</button>
+                <button type="button" class="btn btn-danger" ng-click="dictionary.clearWords()" title="Reject all changes in dictionary name and word list">Reject</button>
             </div>
         </div>
         <div class="col-md-2">

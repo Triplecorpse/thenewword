@@ -21,13 +21,18 @@
             var dictionaries = [];
             var machineName = nameService.getKeys()[0];
 
-            for(let key in localStorage) {
-                if(localStorage.hasOwnProperty(key)) {
-                    let value = JSON.parse(localStorage[key]);
-                    value.machineName = key;
-                    dictionaries.push(value);
+            function updateList() {
+                dictionaries = [];
+                for (let key in localStorage) {
+                    if (localStorage.hasOwnProperty(key)) {
+                        let value = JSON.parse(localStorage[key]);
+                        value.machineName = key;
+                        dictionaries.push(value);
+                    }
                 }
             }
+
+            updateList();
 
             angular.extend(vm, {
                 addWord,
@@ -37,6 +42,7 @@
                 autofill,
                 loadDic,
                 checkKey,
+                addDictionary,
                 isTranslationsLoading,
                 dictionaries,
                 newWord
@@ -64,12 +70,11 @@
             function fillWords() {
                 vm.dictionary = angular.copy(dictionary);
                 try {
-                    let words = dictionary.words.map((element) => {
+                    vm.dictionary.words = dictionary.words.map((element) => {
                         var newElement = angular.copy(element);
                         newElement.translations = element.translations.join(', ');
                         return newElement;
                     });
-                    vm.dictionary.words = words;
                 } catch(e) {
                     //TODO: make pretty inform
                     console.log(e);
@@ -77,11 +82,13 @@
             }
 
             function saveWords() {
+                dictionary = angular.copy(vm.dictionary);
                 dictionary.words = vm.dictionary.words.map((element) => {
                     element.translations = element.translations.split(/,\s*|^\s+|\s+$/);
                     return element;
                 });
                 localStorage[machineName] = JSON.stringify(dictionary);
+                updateList();
                 fillWords();
             }
 
@@ -134,6 +141,21 @@
                 dictionary = JSON.parse(localStorage[dictionaries[index].machineName]);
                 machineName = dictionaries[index].machineName;
                 fillWords();
+            }
+
+            function addDictionary() {
+                let newDictionary = {
+                    name: 'Dictionary',
+                    machineName: nameService.generate(),
+                    from: 'PL',
+                    to: 'RU',
+                    words: []
+                };
+                vm.dictionaries.push(angular.copy(newDictionary));
+                machineName = newDictionary.machineName;
+                delete newDictionary.machineName;
+                localStorage[machineName] = JSON.stringify(newDictionary);
+                loadDic(dictionaries.length - 1);
             }
         }
 
