@@ -16,9 +16,11 @@
             </div>
         </td>
         <td>
-            <div ng-class="word.className" ng-if="translate.isTranslated">{{word.word}}</div>
-            <a href="https://translate.google.com.ua/#pl/ru/{{word.word}}" target="_blank">G</a>,
-            <a href="https://translate.yandex.com/?text={{word.word}}&lang=pl-ru" target="_blank">Ya</a>
+            <div ng-if="translate.isTranslated">
+                <div ng-class="word.className">{{word.word}}</div>
+                <a href="https://translate.google.com.ua/#pl/ru/{{word.word}}" target="_blank">G</a>,
+                <a href="https://translate.yandex.com/?text={{word.word}}&lang=pl-ru" target="_blank">Ya</a>
+            </div>
         </td>
     </tr>
 </table>
