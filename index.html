@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app" ng-controller="appController as app">
+<head>
+    <meta charset="UTF-8">
+    <title>{{app.appTitle}}</title>
+    <link rel="stylesheet" href="./styles/styles.css">
+    <script src="./scripts/script.js"></script>
+</head>
+<body>
+    <header class="page-header">
+        <div class="container">
+            <h1>Memorize: The New Word</h1>
+            <tnw-main-navigation></tnw-main-navigation>
+        </div>
+    </header>
+    <div class="container">
+        <main ui-view></main>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted">Powered by: <a href="http://getbootstrap.com/">Bootstrap</a>, <a href="https://translate.yandex.com//">Yandex Translate</a></p>
+        </div>
+    </footer>
+</body>
+</html>

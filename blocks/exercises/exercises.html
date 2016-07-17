@@ -1,0 +1,44 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        {{exercises.dictionary.name}}
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li ng-repeat="dictionary in exercises.dictionaries" ng-click="exercises.loadDictionary(dictionary.machineName)"><a href="">{{dictionary.name}}</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-success" ng-click="exercises.learn()" title="Start learning this dictionary">Learn</button>
+                    <button type="button" class="btn btn-warning" ng-click="exercises.translate()" title="I know these words - just fill the translations">Translate</button>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="alert alert-success language-toggle-wrapper">
+                    RU <span class="glyphicon glyphicon-refresh"></span> PL
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="alert alert-info info-wrapper">
+                Timer: 00:00; Correct: 0; Incorrect: 0; Learned: 0
+            </div>
+        </div>
+    </div>
+    <div ng-switch="exercises.state">
+        <div ng-switch-default>
+            <tnw-exercises-default></tnw-exercises-default>
+        </div>
+        <div ng-switch-when="learn">
+            <tnw-exercises-learn></tnw-exercises-learn>
+        </div>
+        <div ng-switch-when="translate">
+            <tnw-exercises-translate></tnw-exercises-translate>
+        </div>
+    </div>
+</div>
