@@ -1,6 +1,6 @@
 # thenewword
 Service to help learn new words
-Pre-alpha (0.0.1) released! Things to improve:
+17.07.2016 Pre-alpha (0.0.1) released! Things to improve:
 - remove G and YA signs from word translation cards
 - improve desing
 - implement settings page
