@@ -1,10 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<table class="table">
+    <tr>
+        <th>No</th>
+        <th>Translations</th>
+        <th>Transcription</th>
+        <th>Word</th>
+        <th>Remarks</th>
+    </tr>
+    <tr ng-repeat="word in exercises.dictionary.words track by $index">
+        <td>{{$index + 1}}</td>
+        <td>{{translate.getReadableTranslations(word.translations)}}</td>
+        <td>{{translate.getTranscription(word)}}</td>
+        <td>
+            <div class="input-group-sm">
+                <input type="text" class="form-control" placeholder="Type translation here" aria-describedby="basic-addon1" tabindex="{{$index + 1}}" ng-model="word.suggestion">
+            </div>
+        </td>
+        <td>
+            <div ng-class="word.className" ng-if="translate.isTranslated">{{word.word}}</div>
+            <a href="https://translate.google.com.ua/#pl/ru/{{word.word}}" target="_blank">G</a>,
+            <a href="https://translate.yandex.com/?text={{word.word}}&lang=pl-ru" target="_blank">Ya</a>
+        </td>
+    </tr>
+</table>
+<div class="panel-footer">
+    <button type="button" class="btn btn-success" ng-click="translate.check()" title="Start learning this dictionary" tabindex="{{exercises.dictionary.words.length + 2}}">Check</button>
+</div>

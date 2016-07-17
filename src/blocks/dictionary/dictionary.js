@@ -92,6 +92,7 @@
                 fillWords();
             }
 
+            // search Yandex Dictionary first
             function autofill() {
                 var from = 'pl-ru';
                 var phrase = vm.newWord.word;
@@ -102,22 +103,45 @@
                     method: 'get',
                     url: query
                 })
-                    .then(fillTranslations)
-                    .finally(() => {
-                        vm.isTranslationsLoading = false;
+                    .then((response) => {
+                        var translations = response.data.def.map((element) => {
+                            if(element.tr) {
+                                return (element.tr.map((element) => {
+                                    return element.text;
+                                })).join(', ');
+                            }
+                        });
+                        translations = translations.filter((elem) => { return elem != undefined });
+                        if(translations.length === 0) {
+                            seekPhrase();
+                        } else {
+                            vm.newWord.translations = translations.join(", ");
+                            vm.isTranslationsLoading = false;
+                        }
                     })
+                    .catch(()=> {
+                        vm.isTranslationsLoading = false;
+                    });
             }
 
-            function fillTranslations(response) {
-                var translations = response.data.def.map((element) => {
-                    if(element.tr) {
-                        return (element.tr.map((element) => {
-                            return element.text;
-                        })).join(', ');
-                    }
-                });
-                translations = translations.filter((elem) => { return elem != undefined });
-                vm.newWord.translations = translations.join(", ");
+            // if there is no word in Yandex Dictionary, search Yandex Translate
+            function seekPhrase() {
+                var from = 'pl-ru';
+                var phrase = vm.newWord.word;
+                var key = 'trnsl.1.1.20160717T115748Z.066b542dcedc588c.a7897a46c5abbcd39336bf34ae21a6ca70534fdd';
+                var query = 'https://translate.yandex.net/api/v1.5/tr.json/translate?key=' + key + '&lang=' + from + '&text=' + phrase;
+                vm.isTranslationsLoading = true;
+                $http({
+                    method: 'get',
+                    url: query
+                })
+                    .then((response) => {
+                        vm.newWord.translations = response.data.text.join(', ');
+                        vm.isTranslationsLoading = false;
+                    })
+                    .catch(()=> {
+                        vm.isTranslationsLoading = false;
+                    });
             }
 
             function checkKey(event) {

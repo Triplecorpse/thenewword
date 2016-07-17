@@ -4,18 +4,18 @@
             <div class="col-md-8">
                 <div class="dropdown">
                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        Select a dictionary
+                        {{exercises.dictionary.name}}
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li><a href="#">Action</a></li>
+                        <li ng-repeat="dictionary in exercises.dictionaries" ng-click="exercises.loadDictionary(dictionary.machineName)"><a href="">{{dictionary.name}}</a></li>
                     </ul>
                 </div>
             </div>
             <div class="col-md-2">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-success" ng-click="" title="Start learning this dictionary">Start</button>
-                    <button type="button" class="btn btn-warning" ng-click="" title="Pause timer - I want to drink tea">Pause</button>
+                    <button type="button" class="btn btn-success" ng-click="exercises.learn()" title="Start learning this dictionary">Learn</button>
+                    <button type="button" class="btn btn-warning" ng-click="exercises.translate()" title="I know these words - just fill the translations">Translate</button>
                 </div>
             </div>
             <div class="col-md-2">
@@ -33,6 +33,12 @@
     <div ng-switch="exercises.state">
         <div ng-switch-default>
             <tnw-exercises-default></tnw-exercises-default>
+        </div>
+        <div ng-switch-when="learn">
+            <tnw-exercises-learn></tnw-exercises-learn>
+        </div>
+        <div ng-switch-when="translate">
+            <tnw-exercises-translate></tnw-exercises-translate>
         </div>
     </div>
 </div>

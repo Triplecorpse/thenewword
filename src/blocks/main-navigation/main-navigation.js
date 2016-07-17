@@ -24,7 +24,13 @@
                 }
             }
 
-            vm.navElements = [new NavElement(url + 'exercises', 'Exercises', 'exercises'), new NavElement(url + 'editor', 'Editor', 'editor')];
+            vm.navElements = [
+                new NavElement(url + 'exercises', 'Exercises', 'exercises'),
+                new NavElement(url + 'editor', 'Editor', 'editor'),
+            ];
+                // new NavElement(url + 'settings', 'Settings', 'settings'),
+                // new NavElement(url + 'help', 'Help', 'help')
+            // ];
 
             vm.isActive = (path) => {
                 return $location.path() === path;
