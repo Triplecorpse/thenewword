@@ -2,6 +2,9 @@
 ### Service to help learn new words
 #### 18.07.2016 Some new functionality implemented (`0.1.0`)
 
+> Fixed
+- Stored words didn't save on change in Editor module
+
 > Improved:
 - remove G and YA signs from word translation cards
 - make translations case-insensitive
