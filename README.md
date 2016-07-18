@@ -15,7 +15,7 @@
 - refactor dictionary.js
 - implement settings page
 - write help and tips
-- add new languages*
+- add new languages
 _________
 
 #### 18.07.2016 Some new functionality implemented (`0.1.0`)
