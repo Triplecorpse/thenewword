@@ -1,6 +1,6 @@
-# thenewword
+# The New Word
 ### Service to help learn new words
-#### 18.07.2016 Some new functionality implemented (`0.0.2`)
+#### 18.07.2016 Some new functionality implemented (`0.1.0`)
 
 > Improved:
 - remove G and YA signs from word translation cards
