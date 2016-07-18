@@ -8,12 +8,15 @@
         return {
             searchDictionary,
             getAllDictionaries,
-            saveDictionary
+            saveDictionary,
+            activeDictionary: {}
         };
 
         function searchDictionary(searchBy, value) {
             if(searchBy === 'key') {
-                return getDictionary(value);
+                let dictionary = getDictionary(value);
+                this.activeDictionary = dictionary;
+                return dictionary;
             }
         }
 
@@ -35,8 +38,11 @@
             return dictionary;
         }
 
-        function saveDictionary() {
-
+        function saveDictionary(dictionary) {
+            let dic = angular.copy(dictionary);
+            let key = dic.machineName;
+            delete dic.machineName;
+            localStorage[key] = JSON.stringify(dic);
         }
     }
 })();

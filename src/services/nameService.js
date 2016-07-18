@@ -21,7 +21,11 @@
         }
 
         function getKeys() {
-            return Object.keys(localStorage);
+            let keys = Object.keys(localStorage).filter((element) => {
+                return element !== 'settings';
+            });
+
+            return keys;
         }
     }
 })();

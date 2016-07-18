@@ -1,27 +1,30 @@
 (function() {
     angular
         .module('app')
-        .directive('tnwExercisesTranslate', [exercisesTranslate]);
+        .directive('tnwExercisesTranslate', ['storageService', exercisesTranslate]);
 
-    function exercisesTranslate () {
+    function exercisesTranslate (storageService) {
 
         return {
             restrict: "E",
             templateUrl: "./blocks/exercises/exercises-translate.html",
-            controller: ['storageService', 'settingsService', '$scope', translateController],
-            controllerAs: "translate"
+            scope: {
+                dictionary: '='
+            },
+            controller: ['settingsService', '$scope', translateController],
+            controllerAs: "translate",
+            link: link
         };
 
-        function translateController(storageService, settingsService, $scope) {
+        function translateController(settingsService, $scope) {
             var vm = this;
             var isTranslated = false;
-            var words = $scope.$parent.exercises.dictionary.words;
 
             angular.extend(vm, {
                 getReadableTranslations,
-                isTranslated,
                 getTranscription,
-                check
+                check,
+                isTranslated
             });
 
             function getReadableTranslations(array) {
@@ -36,14 +39,53 @@
 
             function check() {
                 vm.isTranslated = true;
-                for(let word in words) {
-                    if(words[word].word === words[word].suggestion) {
-                        words[word].className = 'label label-success';
+                for(let word in vm.words) {
+                    if(vm.words[word].word.toLowerCase() === vm.words[word].suggestion.toLowerCase()) {
+                        vm.words[word].className = 'label label-success';
+                        if(!vm.words[word].timesTrue) {
+                            vm.words[word].timesTrue = 1;
+                        } else {
+                            vm.words[word].timesTrue++;
+                        }
                     } else {
-                        words[word].className = 'label label-warning';
+
+                        if(!vm.words[word].suggestion) {
+                            vm.words[word].className = 'label label-danger';
+                        } else {
+                            vm.words[word].className = 'label label-warning';
+                        }
+
+                        if(!vm.words[word].timesFalse) {
+                            vm.words[word].timesFalse = 1;
+                        } else {
+                            vm.words[word].timesFalse++;
+                        }
                     }
+                    delete word.suggestion;
+                    delete word.className;
                 }
+                storageService.saveDictionary(vm.dictionary);
             }
+        }
+
+        function link(scope, element, attributtes) {
+            var dictionary = scope.dictionary;
+            var controller = scope.translate;
+
+            function init(newVal) {
+                var dictionary = storageService.searchDictionary('key', newVal);
+                controller.isTranslated = false;
+                controller.dictionary = dictionary;
+                controller.words = dictionary.words.map((element) => {
+                    element.suggestion  = '';
+                    return element;
+                });
+            }
+
+            scope.$watch( 'dictionary.machineName', init );
+
+            storageService.searchDictionary('key', dictionary.machineName);
+
         }
     }
 })();

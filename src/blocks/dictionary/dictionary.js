@@ -1,9 +1,9 @@
 (function() {
     angular
         .module('app')
-        .controller('dictionaryController', ['$http', 'nameService', dictionaryController]);
+        .controller('dictionaryController', ['$http', 'nameService', 'storageService', dictionaryController]);
 
-        function dictionaryController($http, nameService) {
+        function dictionaryController($http, nameService, storageService) {
             var vm = this;
             var newWord = {};
             var dictionary = JSON.parse(localStorage[nameService.getKeys()[0]]);
@@ -14,7 +14,7 @@
             function updateList() {
                 dictionaries = [];
                 for (let key in localStorage) {
-                    if (localStorage.hasOwnProperty(key)) {
+                    if (localStorage.hasOwnProperty(key) && (key !== 'settings')) {
                         let value = JSON.parse(localStorage[key]);
                         value.machineName = key;
                         dictionaries.push(value);
@@ -28,7 +28,6 @@
                 addWord,
                 removeWord,
                 saveWords,
-                clearWords,
                 autofill,
                 loadDic,
                 checkKey,
@@ -50,11 +49,13 @@
                     translations: []
                 };
                 fillWords();
+                saveWords();
             }
 
             function removeWord(index) {
                 dictionary.words.splice(index, 1);
                 fillWords();
+                saveWords();
             }
 
             function fillWords() {
@@ -79,16 +80,6 @@
                 });
                 localStorage[machineName] = JSON.stringify(dictionary);
                 updateList();
-                fillWords();
-            }
-
-            function clearWords() {
-                dictionary.words = JSON.parse(localStorage[machineName]).words;
-                vm.newWord = {
-                    word: '',
-                    transcription: '',
-                    translations: []
-                };
                 fillWords();
             }
 
