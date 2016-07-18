@@ -1,8 +1,8 @@
 <div class="panel panel-default">
     <div class="panel-body">
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div class="input-group">
-                <input type="text" class="form-control" ng-model="dictionary.dictionary.name">
+                <input type="text" class="form-control" ng-model="dictionary.dictionary.name" ng-blur="dictionary.saveWords()">
                 <div class="input-group-btn">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
                     <ul class="dropdown-menu dropdown-menu-right">
@@ -12,12 +12,6 @@
                     </ul>
                 </div><!-- /btn-group -->
             </div><!-- /input-group -->
-        </div>
-        <div class="col-md-2">
-            <div class="btn-group">
-                <button type="button" class="btn btn-success" ng-click="dictionary.saveWords()" title="Accept all changes in dictionary name and word list">Accept</button>
-                <button type="button" class="btn btn-danger" ng-click="dictionary.clearWords()" title="Reject all changes in dictionary name and word list">Reject</button>
-            </div>
         </div>
         <div class="col-md-2">
             <div class="btn-group">
@@ -95,6 +89,8 @@
                 <button type="button" class="btn btn-default" ng-click="dictionary.removeWord($index)">
                     <span class="glyphicon glyphicon-trash"></span>
                 </button>
+                <a href="https://translate.google.com.ua/#pl/ru/{{word.word}}" target="_blank">G</a>,
+                <a href="https://translate.yandex.com/?text={{word.word}}&lang=pl-ru" target="_blank">Ya</a>
             </td>
         </tr>
     </table>

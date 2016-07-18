@@ -6,7 +6,7 @@
         <th>Word</th>
         <th>Remarks</th>
     </tr>
-    <tr ng-repeat="word in exercises.dictionary.words track by $index">
+    <tr ng-repeat="word in translate.words track by $index">
         <td>{{$index + 1}}</td>
         <td>{{translate.getReadableTranslations(word.translations)}}</td>
         <td>{{translate.getTranscription(word)}}</td>
@@ -16,12 +16,14 @@
             </div>
         </td>
         <td>
-            <div ng-class="word.className" ng-if="translate.isTranslated">{{word.word}}</div>
-            <a href="https://translate.google.com.ua/#pl/ru/{{word.word}}" target="_blank">G</a>,
-            <a href="https://translate.yandex.com/?text={{word.word}}&lang=pl-ru" target="_blank">Ya</a>
+            <div ng-if="translate.isTranslated">
+                <div ng-class="word.className">{{word.word.toUpperCase()}}</div>
+                <a href="https://translate.google.com.ua/#pl/ru/{{word.word}}" target="_blank">G</a>,
+                <a href="https://translate.yandex.com/?text={{word.word}}&lang=pl-ru" target="_blank">Ya</a>
+            </div>
         </td>
     </tr>
 </table>
 <div class="panel-footer">
-    <button type="button" class="btn btn-success" ng-click="translate.check()" title="Start learning this dictionary" tabindex="{{exercises.dictionary.words.length + 2}}">Check</button>
+    <button type="button" class="btn btn-success" ng-click="translate.check()" title="Start learning this dictionary" tabindex="{{translate.words.length + 2}}">Check</button>
 </div>
