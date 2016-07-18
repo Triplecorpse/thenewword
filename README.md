@@ -1,22 +1,6 @@
 # The New Word
 ### Service to help learn new words
 
-#### 18.07.2016 __WORKING ON__ (`0.1.1`)
-
-> Improved:
-- improve design
-- add Lingvo Online sign to G and Ya
-
-> Things to improve:
-- improve design
-- implement user statistics
-- remove welcome screen from translations
-- make import/export related to local storage
-- refactor dictionary.js
-- implement settings page
-- write help and tips
-- add new languages
-
 #### 18.07.2016 Some new functionality implemented (`0.1.0`)
 
 > Fixed
@@ -53,3 +37,19 @@
 - refactor dictionary.js
 - implement settings page
 - write help and tips
+
+#### 18.07.2016 __WORKING ON__ (`0.1.1`)
+
+> Improved:
+- improve design
+- add Lingvo Online sign to G and Ya
+
+> Things to improve:
+- improve design
+- implement user statistics
+- remove welcome screen from translations
+- make import/export related to local storage
+- refactor dictionary.js
+- implement settings page
+- write help and tips
+- add new languages
