@@ -1,6 +1,7 @@
 <div class="panel panel-default">
     <div class="panel-body">
         <div class="col-md-10">
+            <p>The dictionary is saved automatically.</p>
             <div class="input-group">
                 <input type="text" class="form-control" ng-model="dictionary.dictionary.name" ng-blur="dictionary.saveWords()">
                 <div class="input-group-btn">
@@ -72,17 +73,17 @@
             </td>
             <td>
                 <div class="input-group-sm">
-                    <input type="text" class="form-control" ng-model="word.word">
+                    <input type="text" class="form-control" ng-model="word.word" ng-blur="dictionary.saveWords()">
                 </div>
             </td>
             <td>
                 <div class="input-group-sm">
-                    <input type="text" class="form-control" ng-model="word.transcription">
+                    <input type="text" class="form-control" ng-model="word.transcription" ng-blur="dictionary.saveWords()">
                 </div>
             </td>
             <td>
                 <div class="input-group-sm">
-                    <input type="text" class="form-control" ng-model="word.translations">
+                    <input type="text" class="form-control" ng-model="word.translations" ng-blur="dictionary.saveWords()">
                 </div>
             </td>
             <td>
