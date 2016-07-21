@@ -1,0 +1,66 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-10">
+                <p>The dictionary is saved automatically.</p>
+                <div class="input-group">
+                    <input type="text" class="form-control" ng-model="editor.dictionary.name" ng-blur="editor.saveWords(editor.dictionary)">
+                    <div class="input-group-btn">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="" ng-repeat="dic in editor.dictionaries track by $index" ng-click="editor.loadDictionary(dic.machineName)">{{dic.name}}</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="" ng-click="editor.addDictionary()">New Dictionary</a></li>
+                        </ul>
+                    </div><!-- /btn-group -->
+                </div><!-- /input-group -->
+            </div>
+            <div class="col-md-2">
+            <p>Languages</p>
+            <tnw-language-select direction="'from'" language="editor.dictionary.from.toUpperCase()"></tnw-language-select>
+            <span class="glyphicon glyphicon-arrow-right"></span>
+            <tnw-language-select direction="'to'" language="editor.dictionary.to.toUpperCase()"></tnw-language-select>
+        </div>
+        </div>
+    </div>
+    <table class="table">
+        <tr>
+            <th class="hidden-xs hidden-sm visible-md visible-lg">No</th>
+            <th class="hidden-xs hidden-sm visible-md visible-lg">Word</th>
+            <th class="hidden-xs hidden-sm visible-md visible-lg">Transcription</th>
+            <th class="hidden-xs hidden-sm visible-md visible-lg">Translations</th>
+            <th class="hidden-xs hidden-sm visible-md visible-lg">Actions</th>
+        </tr>
+        <tr>
+            <td colspan="5">
+                <tnw-new-word new-word="editor.newWord"></tnw-new-word>
+            </td>
+        </tr>
+        <tr ng-repeat="word in editor.dictionary.words track by $index">
+            <td>
+                <p>{{$index + 1}}</p>
+            </td>
+            <td>
+                <div class="input-group-sm">
+                    <input type="text" class="form-control" ng-model="word.word" ng-blur="editor.saveWords(editor.dictionary)">
+                </div>
+            </td>
+            <td>
+                <div class="input-group-sm">
+                    <input type="text" class="form-control" ng-model="word.transcription" ng-blur="editor.saveWords(editor.dictionary)">
+                </div>
+            </td>
+            <td>
+                <div class="input-group-sm">
+                    <input type="text" class="form-control" ng-model="word.translations" ng-blur="editor.saveWords(editor.dictionary)">
+                </div>
+            </td>
+            <td>
+                <button type="button" class="btn btn-default" ng-click="editor.removeWord($index)">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
+                <tnw-translate-buttonsn index="$index"></tnw-translate-buttons>
+            </td>
+        </tr>
+    </table>
+</div>
