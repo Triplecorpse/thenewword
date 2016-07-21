@@ -13,7 +13,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li ng-repeat="menuItem in nav.navElements track by $index" ng-class="{active: nav.isActive('/{{menuItem.path}}')}">
+                <li ng-repeat="menuItem in nav.navElements track by $index" ng-class="{active: nav.isActive('/{{menuItem.path}}')}" ng-if="!menuItem.invisible">
                     <a ng-href="{{menuItem.href}}">{{menuItem.name}} <span ng-if="nav.isActive('/{{menuItem.path}}')" class="sr-only">(current)</span></a>
                 </li>
             </ul>

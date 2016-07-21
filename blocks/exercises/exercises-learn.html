@@ -9,11 +9,8 @@
     <tr ng-repeat="word in exercises.dictionary.words track by $index">
         <td>{{$index + 1}}</td>
         <td>{{word.word}}</td>
-        <td>{{word.transcription}}</td>
-        <td>{{learn.getReadableTranslations(word.translations)}}</td>
-        <td>
-            <a href="https://translate.google.com.ua/#pl/ru/{{word.word}}" target="_blank">G</a>,
-            <a href="https://translate.yandex.com/?text={{word.word}}&lang=pl-ru" target="_blank">Ya</a>
-        </td>
+        <td>{{learn.getTranscription(word.transcription)}}</td>
+        <td>{{word.translations}}</td>
+        <td><tnw-translate-buttons index="$index"></tnw-translate-buttons></td>
     </tr>
 </table>

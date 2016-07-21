@@ -1,5 +1,10 @@
 <div class="panel panel-default">
     <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <p><spaan class="label label-default">Note, that not all language pairs will be auto-translated</spaan></p>
+            </div>
+        </div>
         <div class="col-md-10">
             <p>The dictionary is saved automatically.</p>
             <div class="input-group">
@@ -15,23 +20,10 @@
             </div><!-- /input-group -->
         </div>
         <div class="col-md-2">
-            <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                    PL <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a href="#">PL</a></li>
-                </ul>
-            </div>
+            <p>Languages</p>
+            <tnw-language-select direction="'from'" languages="dictionary.directions"></tnw-language-select>
             <span class="glyphicon glyphicon-arrow-right"></span>
-            <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                    RU <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a href="#">RU</a></li>
-                </ul>
-            </div>
+            <tnw-language-select direction="'to'" languages="dictionary.directions"></tnw-language-select>
         </div>
     </div>
     <table class="table">
@@ -90,8 +82,7 @@
                 <button type="button" class="btn btn-default" ng-click="dictionary.removeWord($index)">
                     <span class="glyphicon glyphicon-trash"></span>
                 </button>
-                <a href="https://translate.google.com.ua/#pl/ru/{{word.word}}" target="_blank">G</a>,
-                <a href="https://translate.yandex.com/?text={{word.word}}&lang=pl-ru" target="_blank">Ya</a>
+                <tnw-translate-buttons word="word.word" from="dictionary.directions.from" to="dictionary.directions.to"></tnw-translate-buttons>
             </td>
         </tr>
     </table>
