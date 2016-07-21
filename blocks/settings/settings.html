@@ -1,0 +1,96 @@
+<form>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="settings.isDevMode"><span class="label label-danger">Dev settings. Use it if you know exactly what you do.</span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-if="settings.isDevMode">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="exampleInputUsername1">JSON path</label>
+                <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputUsername2">Username</label>
+                <input type="text" class="form-control" id="exampleInputUsername2" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+            </div>
+            <p>You can enter here your GitHub account to access online storage. Please, fill JSON path to repository you own or you are collaborated to.</p>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="">Google Translate URL</label>
+                <input type="text" class="form-control" id="" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <label for="">Yandex Translate URL</label>
+                <input type="text" class="form-control" id="" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <label for="">Lingvo Dictionary URL</label>
+                <input type="text" class="form-control" id="" placeholder="Password">
+            </div>
+            <p>Basically, you aren't expected to touch this. This option is for the case of URL change coming together with my death.</p>
+            <p>In URL section you can use such variables as <span class="label label-default">${word}</span> for translation phrase, <span class="label label-default">${from}</span> for source language and <span class="label label-default">${to}</span> for destination language.</p>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="form-group">
+        <label for="">Maximum number of words per session (0 - all dictionary)</label>
+        <input type="number" class="form-control" id="" placeholder="Number">
+    </div>
+
+    <hr>
+
+    <div class="form-group">
+        <div><label>Order</label></div>
+        <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                No sort <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="">No sort</a></li>
+                <li><a href="">The least learned on top</a></li>
+                <li><a href="">Alphabetically</a></li>
+            </ul>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox"> Reverse
+            </label>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="checkbox">
+        <label>
+            <input type="checkbox"> Autotranslate
+        </label>
+    </div>
+
+    <hr>
+
+    <div class="form-group">
+        <button type="button" class="btn btn-default">Export</button><button type="button" class="btn btn-default">Import</button>
+        <div class="form-group">
+            <label for="exampleInputFile">Import from computer</label>
+            <input type="file" id="exampleInputFile">
+            <p class="help-block">Example block-level help text here.</p>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+</form>
