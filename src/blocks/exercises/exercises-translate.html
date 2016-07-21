@@ -8,19 +8,17 @@
     </tr>
     <tr ng-repeat="word in translate.words track by $index">
         <td>{{$index + 1}}</td>
-        <td>{{translate.getReadableTranslations(word.translations)}}</td>
-        <td>{{translate.getTranscription(word)}}</td>
+        <td>{{word.translations}}</td>
+        <td>{{translate.getTranscription(word.transcription)}}</td>
         <td>
             <div class="input-group-sm">
-                <input type="text" class="form-control" placeholder="Type translation here" aria-describedby="basic-addon1" tabindex="{{$index + 1}}" ng-model="word.suggestion">
+                <input type="text" class="form-control" placeholder="Type translation here" aria-describedby="basic-addon1" tabindex="{{$index + 1}}" ng-model="translate.suggestions[$index]">
             </div>
         </td>
         <td>
             <div ng-if="translate.isTranslated">
-                <div ng-class="word.className">{{word.word.toUpperCase()}}</div>
-                <a href="https://translate.google.com.ua/#pl/ru/{{word.word}}" target="_blank">G</a>,
-                <a href="https://translate.yandex.com/?text={{word.word}}&lang=pl-ru" target="_blank">Ya</a>
-                <a href="http://www.lingvo.ua/uk/Translate/pl-ru/{{word.word}}" target="_blank">L</a>
+                <div ng-class="translate.classNames[$index]">{{word.word.toUpperCase()}}</div>
+                <tnw-translate-buttons index="$index"></tnw-translate-buttons>
             </div>
         </td>
     </tr>

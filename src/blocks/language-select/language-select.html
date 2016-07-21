@@ -1,0 +1,8 @@
+<div class="btn-group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+        {{language.toUpperCase()}} <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+        <li ng-repeat="language in possibleLanguages track by $index" tooltip="{{language.name}}"><a href="" ng-click="setActiveLanguage(language.code)">{{language.code.toUpperCase()}}</a></li>
+    </ul>
+</div>

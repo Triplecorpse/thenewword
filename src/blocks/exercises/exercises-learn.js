@@ -8,19 +8,20 @@
         return {
             restrict: "E",
             templateUrl: "./blocks/exercises/exercises-learn.html",
-            controller: ['storageService', 'settingsService', learnController],
+            controller: [learnController],
             controllerAs: "learn"
         };
 
-        function learnController(storageService, settingsService) {
+        function learnController() {
             var vm = this;
 
             angular.extend(vm, {
-                getReadableTranslations
+                getTranscription
             });
 
-            function getReadableTranslations(array) {
-                return array.join(', ')
+            function getTranscription(transcription) {
+                if(transcription)
+                    return `[${transcription}]`;
             }
         }
     }

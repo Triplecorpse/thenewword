@@ -11,37 +11,32 @@
             scope: {
                 dictionary: '='
             },
-            controller: ['settingsService', '$scope', translateController],
+            controller: [translateController],
             controllerAs: "translate",
             link: link
         };
 
-        function translateController(settingsService, $scope) {
+        function translateController() {
             var vm = this;
             var isTranslated = false;
 
             angular.extend(vm, {
-                getReadableTranslations,
                 getTranscription,
                 check,
-                isTranslated
+                isTranslated,
             });
 
-            function getReadableTranslations(array) {
-                return array.join(', ')
-            }
-
-            function getTranscription(word) {
-                if(vm.isTranslated) {
-                    return word.transcription;
+            function getTranscription(transcription) {
+                if((vm.isTranslated) && (transcription)) {
+                    return `[${transcription}]`;
                 }
             }
 
             function check() {
                 vm.isTranslated = true;
                 for(let word in vm.words) {
-                    if(vm.words[word].word.toLowerCase() === vm.words[word].suggestion.toLowerCase()) {
-                        vm.words[word].className = 'label label-success';
+                    if(vm.words[word].word.toLowerCase() === vm.suggestions[word].toLowerCase()) {
+                        // vm.classNames[word] = 'label label-success';
                         if(!vm.words[word].timesTrue) {
                             vm.words[word].timesTrue = 1;
                         } else {
@@ -49,10 +44,10 @@
                         }
                     } else {
 
-                        if(!vm.words[word].suggestion) {
-                            vm.words[word].className = 'label label-danger';
+                        if(!vm.suggestions[word]) {
+                            vm.classNames[word] = 'label label-danger';
                         } else {
-                            vm.words[word].className = 'label label-warning';
+                            vm.classNames[word] = 'label label-warning';
                         }
 
                         if(!vm.words[word].timesFalse) {
@@ -61,14 +56,14 @@
                             vm.words[word].timesFalse++;
                         }
                     }
-                    delete word.suggestion;
-                    delete word.className;
                 }
+                console.log(vm.classNames);
+                console.log(vm.suggestions);
                 storageService.saveDictionary(vm.dictionary);
             }
         }
 
-        function link(scope, element, attributtes) {
+        function link(scope) {
             var dictionary = scope.dictionary;
             var controller = scope.translate;
 
@@ -76,13 +71,16 @@
                 var dictionary = storageService.searchDictionary('key', newVal);
                 controller.isTranslated = false;
                 controller.dictionary = dictionary;
-                controller.words = dictionary.words.map((element) => {
-                    element.suggestion  = '';
+                controller.classNames = new Array(dictionary.words.length);
+                controller.suggestions = new Array(dictionary.words.length);
+                controller.words = dictionary.words.map((element, index) => {
+                    controller.classNames[index] = 'label label-success';
+                    controller.suggestions[index] = '';
                     return element;
                 });
             }
 
-            scope.$watch( 'dictionary.machineName', init );
+            scope.$watch('dictionary.machineName', init);
 
             storageService.searchDictionary('key', dictionary.machineName);
 

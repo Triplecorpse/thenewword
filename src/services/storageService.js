@@ -1,21 +1,39 @@
 (function() {
     angular
         .module('app')
-        .service('storageService', [storageService]);
+        .service('storageService', ['nameService', storageService]);
 
-    function storageService () {
+    function storageService (nameService) {
 
-        return {
+        var activeDictionary;
+
+        var storage = {
             searchDictionary,
             getAllDictionaries,
             saveDictionary,
-            activeDictionary: {}
+            init,
+            activeDictionary
         };
+
+        init();
+
+        function init() {
+            searchDictionary('key', getFirstKey());
+        }
+
+        function getFirstKey() {
+            for(let key in localStorage) {
+                if(localStorage.hasOwnProperty(key) && (key !== 'settings')) {
+                    return key
+                }
+            }
+        }
 
         function searchDictionary(searchBy, value) {
             if(searchBy === 'key') {
                 let dictionary = getDictionary(value);
-                this.activeDictionary = dictionary;
+                activeDictionary = dictionary;
+                storage.activeDictionary = dictionary;
                 return dictionary;
             }
         }
@@ -44,5 +62,8 @@
             delete dic.machineName;
             localStorage[key] = JSON.stringify(dic);
         }
+
+
+        return storage;
     }
 })();

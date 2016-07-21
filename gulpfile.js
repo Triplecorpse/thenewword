@@ -8,14 +8,15 @@ var copy = require('gulp-copy');
 var batch = require('gulp-batch');
 
 var paths = {
-    scripts: ['./bower_components/jquery/dist/jquery.min.js',
-        './bower_components/angular/angular.min.js',
-        './bower_components/angular-ui-router/release/angular-ui-router.min.js',
-        './bower_components/lodash/dist/lodash.core.min.js',
-        './bower_components/bootstrap/dist/js/bootstrap.min.js',
-        './src/config.js', './src/main.js', './src/blocks/**/*.js', './src/services/**/*.js'],
-    styles: ['./bower_components/bootstrap/dist/css/bootstrap.css', './src/blocks/**/*.scss'],
-    fonts: ['./bower_components/bootstrap/dist/fonts/**/*.*'],
+    scripts: ['./bower_components/jquery/dist/jquery.min.js',//
+        './bower_components/angular/angular.min.js',//
+        './bower_components/angular-ui-router/release/angular-ui-router.min.js',//
+        './bower_components/lodash/dist/lodash.core.min.js',//
+        './bower_components/bootstrap/dist/js/bootstrap.min.js',//
+        './src/config.js', './src/main.js', './src/states/**/*.js', './src/blocks/**/*.js', './src/services/**/*.js'],
+    styles: ['./bower_components/bootstrap/dist/css/bootstrap.css',
+        './src/states/**/*.scss', './src/states/**/*.css', './src/blocks/**/*.scss', './src/blocks/**/*.css'],
+    fonts: ['./bower_components/bootstrap/dist/fonts/**/*.*', './src/font/**/*.*'],
     htmls: ['./src/index.html', './src/**/*.html'],
     jsxs: ['./src/**/*.jsx']
 };

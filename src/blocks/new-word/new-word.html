@@ -1,0 +1,37 @@
+<form class="form-inline">
+    <div class="row" ng-keypress="checkKey($event)">
+        <div class="col-md-1 hidden-sm">
+            <p>N</p>
+        </div>
+        <div class="col-md-3 col-sm-12">
+            <div class="form-group">
+                <div class="input-group-sm">
+                    <label for="new-word-word" class="hidden-md visible-sm">Word</label>
+                    <input type="text" class="form-control" id="new-word-word" ng-model="newWord.word" ng-blur="getTranslations(newWord.word)">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-12">
+            <div class="form-group">
+                <div class="input-group-sm">
+                    <label for="new-word-word" class="hidden-md visible-sm">Transcription</label>
+                    <input type="text" class="form-control" id="new-word-transcription" ng-model="newWord.transcription">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-12">
+            <div class="form-group">
+                <div class="input-group-sm">
+                    <label for="new-word-word" class="hidden-md visible-sm">Translations</label>
+                    <input type="text" class="form-control" id="new-word-translations" ng-model="newWord.translations" ng-disabled="isTranslationsLoading">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-1">
+            <label for="new-word-word" class="hidden-md visible-sm">Actions</label>
+            <button type="button" class="btn btn-default" id="new-word-add" ng-click="addWord()">
+                <span class="glyphicon glyphicon-plus"></span><span class="hidden-lg hidden-md visible-sm visible-xs">Add Word</span>
+            </button>
+        </div>
+    </div>
+</form>

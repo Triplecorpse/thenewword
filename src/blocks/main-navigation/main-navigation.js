@@ -17,20 +17,21 @@
             var url = getUrl();
 
             class NavElement {
-                constructor(href, name, path) {
+                constructor(href, name, path, invisible) {
                     this.href = href;
                     this.name = name;
                     this.path = path;
+                    this.invisible = invisible;
                 }
             }
 
             vm.navElements = [
                 new NavElement(url + 'exercises', 'Exercises', 'exercises'),
                 new NavElement(url + 'editor', 'Editor', 'editor'),
+                new NavElement(url + 'statistics', 'Statistics', 'statistics', true),
+                new NavElement(url + 'settings', 'Settings', 'settings', true),
+                new NavElement(url + 'help', 'Help', 'help', true),
             ];
-                // new NavElement(url + 'settings', 'Settings', 'settings'),
-                // new NavElement(url + 'help', 'Help', 'help')
-            // ];
 
             vm.isActive = (path) => {
                 return $location.path() === path;
