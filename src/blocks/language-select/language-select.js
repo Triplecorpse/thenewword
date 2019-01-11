@@ -26,7 +26,8 @@
             scope.possibleLanguages = [new Language('en', 'English'),
                 new Language('pl', 'Polish'),
                 new Language('ru', 'Russian'),
-                new Language('it', 'Italian')];
+                new Language('it', 'Italian'),
+                new Language('fr', 'French')];
 
             scope.setActiveLanguage = function (code) {
                 var activeLanguage = _.find(scope.possibleLanguages, (elem) => {
